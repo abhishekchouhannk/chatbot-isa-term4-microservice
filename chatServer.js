@@ -128,11 +128,11 @@ const { default: fetch } = await import("node-fetch");
 
 // Middleware to handle favicon requests
 app.get("/favicon.ico", (req, res) => {
-    res.status(404).send("Not Found");
+    res.status(200).end();
 });
 
 app.get("/favicon.png", (req, res) => {
-    res.status(404).send("Not Found");
+    res.status(200).end();
 });
 
 // Start the API server
