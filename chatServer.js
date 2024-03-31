@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
@@ -85,21 +86,6 @@ async function chatWithHistory(userMessage, history) {
     return cleanedBotResponse;
 }
 
-// // Function to get user input from console
-// function getUserInput() {
-//     return new Promise((resolve) => {
-//         const readline = require("readline").createInterface({
-//             input: process.stdin,
-//             output: process.stdout
-//         });
-
-//         readline.question("", (userInput) => {
-//             readline.close();
-//             resolve(userInput);
-//         });
-//     });
-// }
-
 function extractResponse(responseText) {
 	// Remove leading and trailing '\n', '`', or '```' characters
 	let cleanedText = responseText.replace(/^[\n`]+|[\n`]+$/g, '');
@@ -126,7 +112,7 @@ async function query(data) {
 const { default: fetch } = await import("node-fetch");
 	const response = await fetch(
 			"https://api-inference.huggingface.co/models/google/gemma-7b-it", {
-					headers: { Authorization: "Bearer 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", "Content-Type": "application/json" },
+					headers: { Authorization: `Bearer ${process.env.HUGGING_FACE_BEARER_KEY}`, "Content-Type": "application/json" },
 					method: "POST",
 					body: JSON.stringify(data),
 			}
