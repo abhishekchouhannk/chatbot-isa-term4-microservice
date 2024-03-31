@@ -14,6 +14,11 @@ app.use(cors());
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 
+// Add a simple welcome message for the root route
+app.get("/", (req, res) => {
+    res.send("Hello! This is the chat server's welcome page.");
+});
+
 // Route to start the conversation
 app.post("/startConversation", async (req, res) => {
     const userMessage = req.body.userMessage;
