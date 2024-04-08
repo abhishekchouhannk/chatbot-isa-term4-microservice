@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const app = express();
 const port = 3000;
+const path = require('path');
 
 let userHistory = [];
 
@@ -73,6 +74,16 @@ app.post("/continueConversation", async (req, res) => {
   // Send bot's response as the API response
   res.json({ botResponse });
 });
+
+// Define a route to serve the HTML file
+app.get('/v1/docs', (req, res) => {
+  // Path to your HTML file
+  const htmlFilePath = path.join(__dirname, 'public', 'doc.html');
+
+  // Send the HTML file as the response
+  res.sendFile(htmlFilePath);
+});
+
 
 // Function to handle user input and bot responses
 async function chat(userMessage) {
