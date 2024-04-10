@@ -161,7 +161,7 @@ async function query(data) {
     "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it",
     {
       headers: {
-        Authorization: "Bearer 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",
+        Authorization: "Bearer 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",
         "Content-Type": "application/json",
       },
       method: "POST",
