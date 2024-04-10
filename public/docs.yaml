@@ -105,4 +105,29 @@ paths:
       responses:
         200:
           description: HTML documentation served successfully
+  /v1/main-app-profile:
+    # Path for updating profile in the main application (example route from main app)
+    put:
+      description: Update user profile in the main application
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: profileData
+          description: Profile data
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: Username
+              password:
+                type: string
+                description: password
+      responses:
+        200:
+          description: Profile updated successfully
 definitions: {}
