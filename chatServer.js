@@ -14,6 +14,9 @@ app.use(cors());
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 const fs = require("fs");
 
 // Route to get user history as JSON
@@ -82,6 +85,15 @@ app.get('/v1/docs', (req, res) => {
 
   // Send the HTML file as the response
   res.sendFile(htmlFilePath);
+});
+
+// Route to serve the YAML file
+app.get('/v1/docs/swagger.yaml', (req, res) => {
+  // Path to your YAML file
+  const yamlFilePath = path.join(__dirname, 'public', 'docs.yaml');
+
+  // Send the YAML file as the response
+  res.sendFile(yamlFilePath);
 });
 
 

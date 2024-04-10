@@ -1,0 +1,108 @@
+swagger: "2.0"
+info:
+  version: '1.0.0'
+  title: Chat API
+  description: API for handling chat conversations
+basePath: /
+schemes:
+  - http
+paths:
+  /getUserHistory:
+    get:
+      description: Retrieve user conversation history in JSON format
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user:
+                      type: string
+                    bot:
+                      type: string
+  /downloadUserHistory:
+    get:
+      description: Download user conversation history as a text file with json markup
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+  /deleteUserHistory:
+    delete:
+      description: Delete user conversation history to rid previous messages
+      responses:
+        200:
+          description: User history deleted successfully
+  /startConversation:
+    post:
+      description: Start a new conversation with chatbot
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: userMessage
+          description: User message
+          required: true
+          schema:
+            type: object
+            properties:
+              userMessage:
+                type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              botResponse:
+                type: string
+  /continueConversation:
+    post:
+      description: Continue the conversation (used after conversation has been initialized)
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: userMessage
+          description: User message
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                userMessage:
+                  type: string
+                  description: User message
+                botResponse:
+                  type: string
+                  description: Bot response       
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              botResponse:
+                type: string
+  /v1/docs:
+    get:
+      description: Serve API documentation HTML for chatbot api
+      produces:
+        - text/html
+      responses:
+        200:
+          description: HTML documentation served successfully
+definitions: {}
