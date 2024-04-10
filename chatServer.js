@@ -170,10 +170,10 @@ function cleanResponse(input) {
 async function query(data) {
   const { default: fetch } = await import("node-fetch");
   const response = await fetch(
-    "https://api-inference.huggingface.co/models/google/gemma-7b-it",
+    "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it",
     {
       headers: {
-        Authorization: "Bearer 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",
+        Authorization: "Bearer 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",
         "Content-Type": "application/json",
       },
       method: "POST",
